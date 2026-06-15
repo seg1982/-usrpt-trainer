@@ -1,0 +1,221 @@
+═══════════════════════════════════════════════════════════════════════════════
+                       🚀 USRPT TRAINER - EN VIVO
+                       Qué hacer AHORA MISMO
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ TU APP ESTÁ LISTA PARA DEPLOY
+
+Archivos creados:
+✓ server.js                          (Backend con IA)
+✓ App.jsx                            (Frontend React)
+✓ App.css                            (Estilos)
+✓ main.jsx                           (Entry point)
+✓ index.html                         (Template)
+✓ package.json                       (Dependencias)
+✓ vite.config.js                     (Config Vite)
+✓ vercel.json                        (Config Vercel)
+✓ .env.example                       (Template variables)
+✓ .gitignore                         (Para Git)
+✓ README.md                          (Documentación)
+✓ DEPLOY_VERCEL_RAILWAY.md           (Guía deploy)
+
+═══════════════════════════════════════════════════════════════════════════════
+                    4 PASOS = 15 MINUTOS = ¡EN VIVO!
+═══════════════════════════════════════════════════════════════════════════════
+
+PASO 1: OBTÉN API KEY (2 minutos)
+───────────────────────────────────────────────────────────────────────────────
+
+→ Ir a: https://console.anthropic.com/account/keys
+
+→ Copiar una API key (ejemplo: sk-ant-bWVudGFsLWFjdGl2...)
+
+→ GUARDAR EN LUGAR SEGURO
+
+
+PASO 2: GITHUB (3 minutos)
+───────────────────────────────────────────────────────────────────────────────
+
+→ Crear cuenta en GitHub: https://github.com/signup
+
+→ Crear repo nuevo en: https://github.com/new
+   Nombre: usrpt-trainer
+   Public
+   ✓ Initialize with README
+
+→ Clonar en tu PC:
+   git clone https://github.com/TU_USUARIO/usrpt-trainer.git
+   cd usrpt-trainer
+
+→ Copiar TODOS los archivos que creamos en la carpeta
+
+→ Crear estructura:
+   usrpt-trainer/
+   ├── src/
+   │   ├── App.jsx         ← COPIA AQUÍ
+   │   ├── App.css         ← COPIA AQUÍ
+   │   └── main.jsx        ← COPIA AQUÍ
+   ├── server.js           ← COPIA AQUÍ
+   ├── package.json        ← COPIA AQUÍ
+   ├── vite.config.js      ← COPIA AQUÍ
+   └── ... (resto de archivos)
+
+→ Hacer push:
+   git add .
+   git commit -m "USRPT Trainer App"
+   git push -u origin main
+
+
+PASO 3: VERCEL - FRONTEND (5 minutos)
+───────────────────────────────────────────────────────────────────────────────
+
+→ Ir a: https://vercel.com/signup
+   Registrarse con GitHub
+
+→ Click "New Project"
+   Seleccionar: usrpt-trainer
+
+→ Deploy (sin cambiar nada)
+
+→ Esperar 1-2 minutos
+
+→ URL aparece (ejemplo: https://usrpt-trainer.vercel.app)
+
+→ GUARDAR URL
+
+
+PASO 4: RAILWAY - BACKEND (5 minutos)
+───────────────────────────────────────────────────────────────────────────────
+
+→ Ir a: https://railway.app
+   Sign up con GitHub
+
+→ Click "New Project"
+   "Deploy from GitHub"
+   Seleccionar: usrpt-trainer
+
+→ Esperar a que termine el deploy (~1 min)
+
+→ En Railway → Variables
+   Agregar dos:
+   
+   ANTHROPIC_API_KEY = sk-ant-tu_api_key
+   NODE_ENV = production
+
+→ Railway → Settings → Public Networking
+   Copiar URL (ejemplo: https://usrpt-trainer-prod.up.railway.app)
+
+→ Volver a Vercel → Settings → Environment Variables
+   Crear/Editar VITE_API_URL:
+   https://usrpt-trainer-prod.up.railway.app
+   
+   Redeploy automático (~30 segundos)
+
+═══════════════════════════════════════════════════════════════════════════════
+                          ¡LISTO! PRUEBA EN iPhone
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Abre Safari en iPhone
+
+2. Entra a: https://usrpt-trainer.vercel.app
+
+3. Share → Agregar a inicio
+
+4. ¡LISTO! Aparece como app nativa en tu home 🎉
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ¿ALGO NO FUNCIONA? CHECKLIST
+═══════════════════════════════════════════════════════════════════════════════
+
+[ ] ¿Copié TODOS los archivos en la carpeta correcta?
+[ ] ¿Hice git push y confirmo en GitHub que están?
+[ ] ¿Vercel está deployado? (ver en vercel.com/dashboard)
+[ ] ¿Railway está deployado? (ver en railway.app/dashboard)
+[ ] ¿ANTHROPIC_API_KEY está en Railway (exacto, sin espacios)?
+[ ] ¿VITE_API_URL está en Vercel (sin / al final)?
+[ ] ¿Redeploy en Vercel después de cambiar VITE_API_URL?
+[ ] ¿Esperar 30 segundos después de redeploy?
+[ ] ¿La URL en el navegador carga? (https://usrpt-trainer.vercel.app)
+[ ] ¿Puedo clickear "Iniciar Sesión"?
+
+Si algo falló:
+- Vercel logs: https://vercel.com/dashboard → Project → Deployments
+- Railway logs: https://railway.app/dashboard → Project → Logs
+
+═══════════════════════════════════════════════════════════════════════════════
+                          🎯 MÁS IMPORTANTE AHORA
+═══════════════════════════════════════════════════════════════════════════════
+
+Tu app está LISTA para que:
+
+✅ LUNES (hoy): Hagas tu primer entreno
+   - Abre app
+   - Ve el plan de 1.100m
+   - Nada
+   - Registra feedback
+
+✅ IA ANALIZA tu feedback automáticamente
+
+✅ MIÉRCOLES: App genera nuevo entreno AJUSTADO
+   - Basado en tu feedback
+   - Periodizado hacia Nacional 24 julio
+
+✅ Repite cada semana
+
+═══════════════════════════════════════════════════════════════════════════════
+                             💡 TIPS FINALES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. La app almacena TODO en el servidor (Railway)
+   - No borra datos si cierras app
+   - Accesible desde cualquier iPhone
+
+2. El feedback que registres IMPORTA
+   - Sé preciso en tiempos y sensación
+   - IA aprende y ajusta entrenamientos basado en esto
+
+3. Si quieres cambios en el código:
+   git commit → git push → Vercel redeploy automático (~30 seg)
+
+4. Railway es GRATUITO (~$5 crédito/mes)
+   - Más que suficiente para esta app
+
+5. Anthropic API cuesta ~$0.01 por cada llamada IA
+   - 3 entrenamientos/semana = ~$0.30/mes
+
+═══════════════════════════════════════════════════════════════════════════════
+                        ¿PREGUNTAS FRECUENTES?
+═══════════════════════════════════════════════════════════════════════════════
+
+"¿Puedo cambiar algo?"
+→ SÍ. Cambia código → git push → Vercel redeploy
+
+"¿Se pierden los datos si actualizo?"
+→ NO. Los datos están en Railway, no en tu teléfono
+
+"¿Funciona sin internet?"
+→ NO. Necesita conexión para que IA ajuste entrenamientos
+
+"¿Puedo compartir la app con otros?"
+→ SÍ. Todos acceden a la misma URL. Pero cada usuario tiene su propio perfil
+
+"¿Cómo actualizar ANTHROPIC_API_KEY?"
+→ Railway → Variables → Editar → Cambiar valor → Guardar → Redeploy
+
+═══════════════════════════════════════════════════════════════════════════════
+                            🚀 ESTÁS LISTO
+═══════════════════════════════════════════════════════════════════════════════
+
+Todos los archivos están en: /mnt/user-data/outputs/
+
+PRÓXIMO PASO:
+1. Obtén API key
+2. Crea GitHub
+3. Deploy Vercel
+4. Deploy Railway
+5. ¡Entrena!
+
+═══════════════════════════════════════════════════════════════════════════════
+                    ¡BUENA SUERTE EN TU NACIONAL! 🏆
+                        24 JULIO - 100mts MARIPOSA
+═══════════════════════════════════════════════════════════════════════════════

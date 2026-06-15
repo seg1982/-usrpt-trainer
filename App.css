@@ -1,0 +1,597 @@
+/* ═══════════════════════════════════════════════════════════════
+   APP.CSS - Estilos USRPT Trainer (iOS responsive)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --primary: #00d4ff;
+  --primary-dark: #0099cc;
+  --success: #00ff88;
+  --warning: #ffc800;
+  --danger: #ff6400;
+  --bg-main: #0a0e27;
+  --bg-secondary: #1a1f3a;
+  --bg-tertiary: #252d4a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0aec0;
+  --border: rgba(0, 212, 255, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-main);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOGIN SCREEN
+   ═══════════════════════════════════════════════════════════════ */
+
+.app-container.login {
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-box {
+  text-align: center;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  padding: 40px 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.1);
+}
+
+.login-box h1 {
+  font-size: 48px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--success) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.login-box p {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.footer-text {
+  margin-top: 20px;
+  font-size: 12px !important;
+  color: var(--text-secondary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
+
+.app-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #000;
+  padding: 20px;
+  text-align: center;
+  padding-top: 40px;
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.2);
+}
+
+.app-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.app-header p {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 4px 0 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TABS NAVIGATION
+   ═══════════════════════════════════════════════════════════════ */
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(0, 212, 255, 0.05);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tab {
+  flex: 1;
+  min-width: 80px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tab.active {
+  background: rgba(0, 212, 255, 0.3);
+  color: var(--primary);
+}
+
+.tab:active {
+  background: rgba(0, 212, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ═══════════════════════════════════════════════════════════════ */
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+
+.section {
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.section h3 {
+  font-size: 14px;
+  margin: 16px 0 8px;
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATS GRID
+   ═══════════════════════════════════════════════════════════════ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.stat-meta {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin: 4px 0 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════════════════════════════ */
+
+.entreno-preview,
+.nutricion-plan,
+.ai-response {
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.entreno-preview h3,
+.nutricion-plan h3 {
+  color: var(--primary);
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.entreno-preview p,
+.nutricion-plan p {
+  font-size: 12px;
+  margin: 4px 0;
+  color: var(--text-secondary);
+}
+
+.ai-note {
+  background: rgba(0, 255, 136, 0.05);
+  border-left: 3px solid var(--success);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.ai-note p {
+  margin: 0;
+  color: var(--success);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ENTRENAMIENTOS DETALLE
+   ═══════════════════════════════════════════════════════════════ */
+
+.entreno-detalle {
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.entreno-info {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.entreno-info span {
+  background: rgba(0, 212, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.entreno-detalle h3 {
+  margin: 14px 0 6px;
+  color: var(--success);
+}
+
+.entreno-detalle ul {
+  list-style: none;
+  padding-left: 16px;
+}
+
+.entreno-detalle li {
+  margin: 6px 0;
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: 8px;
+}
+
+.entreno-detalle li:before {
+  content: "•";
+  color: var(--primary);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.meta {
+  color: var(--text-secondary);
+  font-size: 11px !important;
+}
+
+.warning {
+  background: rgba(255, 196, 0, 0.1);
+  padding: 8px;
+  border-radius: 6px;
+  color: var(--warning);
+  font-weight: 600;
+  margin: 8px 0 !important;
+}
+
+.total {
+  background: rgba(0, 255, 136, 0.1);
+  padding: 10px;
+  border-radius: 6px;
+  color: var(--success);
+  font-weight: 600;
+  margin: 14px 0 !important;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORMS
+   ═══════════════════════════════════════════════════════════════ */
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  -webkit-appearance: none;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg-tertiary);
+}
+
+.slider {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-secondary);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  margin: 8px 0;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+.value {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 8px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SENSATION BUTTONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.sensation-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.sensation-btn {
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: rgba(0, 212, 255, 0.05);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+}
+
+.sensation-btn.active {
+  background: rgba(0, 212, 255, 0.3);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.sensation-btn:active {
+  opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════════════════════════════ */
+
+.btn-primary,
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  margin-top: 12px;
+  -webkit-appearance: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #000;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: rgba(0, 212, 255, 0.2);
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:active {
+  background: rgba(0, 212, 255, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AI RESPONSE
+   ═══════════════════════════════════════════════════════════════ */
+
+.ai-response {
+  background: rgba(0, 255, 136, 0.05);
+  border-color: rgba(0, 255, 136, 0.3);
+  margin-top: 20px;
+}
+
+.ai-response h3 {
+  color: var(--success);
+  margin-bottom: 12px;
+}
+
+.ai-response p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.ai-response strong {
+  color: var(--text-primary);
+}
+
+.alert {
+  background: rgba(255, 100, 0, 0.1);
+  border-left: 3px solid var(--danger);
+  padding: 10px;
+  border-radius: 6px;
+  color: var(--danger) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMIDAS PLAN NUTRICIONAL
+   ═══════════════════════════════════════════════════════════════ */
+
+.comidas {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.comida {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.comida strong {
+  display: block;
+  color: var(--primary);
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.comida p {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .section {
+    padding: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tab {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .app-header {
+    padding-top: 30px;
+  }
+}
+
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+
+  .app-header {
+    padding-top: max(20px, env(safe-area-inset-top));
+  }
+}
