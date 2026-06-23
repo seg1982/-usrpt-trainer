@@ -14,6 +14,18 @@ app.use(express.json());
 
 const client = new Anthropic();
 
+// ═══════════════════════════════════════════════════════════════
+// HEALTH CHECK - RUTA RAÍZ (CRÍTICA)
+// ═══════════════════════════════════════════════════════════════
+
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok',
+    message: '🚀 USRPT Trainer Backend Online',
+    timestamp: new Date()
+  });
+});
+
 // BASE DE DATOS EN MEMORIA (Luego cambiar a MongoDB)
 const database = {
   usuarios: {},
@@ -365,8 +377,9 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor USRPT en http://localhost:${PORT}`);
   console.log('✓ IA Claude integrada');
-  console.log('✓ Generación dinámmica de entrenamientos');
+  console.log('✓ Generación dinámica de entrenamientos');
   console.log('✓ Análisis de feedback automático');
+  console.log(`✓ Health check: GET / `);
 });
 
 module.exports = app;
