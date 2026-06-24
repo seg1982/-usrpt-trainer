@@ -1,8 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Dashboard({ user, onLogout }) {
   const [view, setView] = useState('overview');
-  
+  const [entrenamientos, setEntrenamientos] = useState([]);
+  const [nutricion, setNutricion] = useState(null);
+  const [feedbackEnviado, setFeedbackEnviado] = useState(false);
+
+  // Cargar datos del backend
+  useEffect(() => {
+    const cargarDatos = async () => {
+      try {
+        const resEnt = await fetch('http://localhost:3001/api/entrenamientos');
+        const dataEnt = await resEnt.json();
+        setEntrenamientos(dataEnt);
+
+        const resNut = await fetch('http://localhost:3001/api/nutricion');
+        const dataNut = await resNut.json();
+        setNutricion(dataNut);
+      } catch (error) {
+        console.error('Error cargando datos:', error);
+      }
+    };
+    cargarDatos();
+  }, []);
+
+  const enviarFeedback = async (nivel) => {
+    try {
+      const res = await fetch('http://localhost:3001/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nivel })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFeedbackEnviado(true);
+        setTimeout(() => setFeedbackEnviado(false), 2000);
+      }
+    } catch (error) {
+      console.error('Error enviando feedback:', error);
+    }
+  };
+
   return (
     <div style={{ minHeight: '100vh', background: '#0A1929', color: 'white' }}>
       <header style={{ background: 'linear-gradient(135deg, #1D5B7D 0%, #0F9E8F 100%)', padding: '24px', textAlign: 'center' }}>
@@ -58,24 +96,20 @@ export default function Dashboard({ user, onLogout }) {
         {view === 'entrenamientos' && (
           <>
             <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>🏊 Plan de Entrenamientos</h2>
-            <div style={{ display: 'grid', gap: '20px' }}>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0F9E8F' }}>
-                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>Viernes 28 Junio</h3>
-                <p style={{ marginBottom: '12px' }}>🏊 8x50m Mariposa @ 42 seg</p>
-                <p style={{ marginBottom: '12px' }}>⏱️ Descanso: 90 segundos</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>📍 Fase: BASE - Intensidad 75-80%</p>
+            {entrenamientos.length === 0 ? (
+              <p style={{ opacity: 0.7 }}>Cargando entrenamientos...</p>
+            ) : (
+              <div style={{ display: 'grid', gap: '20px' }}>
+                {entrenamientos.map(ent => (
+                  <div key={ent.id} style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0F9E8F' }}>
+                    <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>{ent.titulo}</h3>
+                    <p style={{ marginBottom: '12px' }}>🏊 {ent.series}</p>
+                    <p style={{ marginBottom: '12px' }}>⏱️ Descanso: {ent.descanso}</p>
+                    <p style={{ fontSize: '12px', opacity: 0.7 }}>📍 Fase: {ent.fase}</p>
+                  </div>
+                ))}
               </div>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #D85A30' }}>
-                <h3 style={{ color: '#D85A30', marginBottom: '12px' }}>Lunes 1 Julio</h3>
-                <p style={{ marginBottom: '12px' }}>🏊 6x100m Mariposa @ 1:25</p>
-                <p style={{ marginBottom: '12px' }}>⏱️ Descanso: 120 segundos</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>📍 Fase: BASE - Intensidad 75-80%</p>
-              </div>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0F9E8F', opacity: 0.6 }}>
-                <h3 style={{ color: '#AAA', marginBottom: '12px' }}>Viernes 5 Julio</h3>
-                <p style={{ marginBottom: '12px' }}>🏊 Próximamente...</p>
-              </div>
-            </div>
+            )}
           </>
         )}
 
@@ -83,11 +117,11 @@ export default function Dashboard({ user, onLogout }) {
           <>
             <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>💬 Tu Feedback</h2>
             <div style={{ background: '#0F3D52', padding: '32px', borderRadius: '12px', textAlign: 'center' }}>
-              <p style={{ fontSize: '48px', marginBottom: '20px' }}>📝</p>
+              {feedbackEnviado && <p style={{ color: '#0F9E8F', fontSize: '18px', marginBottom: '20px' }}>✅ Feedback registrado!</p>}
               <p style={{ fontSize: '18px', marginBottom: '20px' }}>¿Cómo te sentiste en tu último entrenamiento?</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px', marginTop: '30px' }}>
                 {['Excelente', 'Bien', 'Normal', 'Cansado'].map(level => (
-                  <button key={level} style={{ padding: '16px', background: '#1D5B7D', color: 'white', border: '2px solid #0F9E8F', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.3s ease' }} onMouseOver={(e) => e.target.style.background = '#0F9E8F'} onMouseOut={(e) => e.target.style.background = '#1D5B7D'}>
+                  <button key={level} onClick={() => enviarFeedback(level)} style={{ padding: '16px', background: '#1D5B7D', color: 'white', border: '2px solid #0F9E8F', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}>
                     {level}
                   </button>
                 ))}
@@ -99,32 +133,32 @@ export default function Dashboard({ user, onLogout }) {
         {view === 'nutrición' && (
           <>
             <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>🥗 Plan de Nutrición</h2>
-            <div style={{ display: 'grid', gap: '20px' }}>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
-                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🌅 Desayuno</h3>
-                <p style={{ marginBottom: '8px' }}>• Avena con plátano y almendras</p>
-                <p style={{ marginBottom: '8px' }}>• Café con leche desnatada</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 450 kcal</p>
+            {!nutricion ? (
+              <p style={{ opacity: 0.7 }}>Cargando plan nutricional...</p>
+            ) : (
+              <div style={{ display: 'grid', gap: '20px' }}>
+                <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                  <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🌅 Desayuno</h3>
+                  {nutricion.desayuno && nutricion.desayuno.items.map((item, i) => <p key={i} style={{ marginBottom: '8px' }}>• {item}</p>)}
+                  <p style={{ fontSize: '12px', opacity: 0.7, marginTop: '12px' }}>Calorías: {nutricion.desayuno?.calorias} kcal</p>
+                </div>
+                <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                  <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🥗 Almuerzo</h3>
+                  {nutricion.almuerzo && nutricion.almuerzo.items.map((item, i) => <p key={i} style={{ marginBottom: '8px' }}>• {item}</p>)}
+                  <p style={{ fontSize: '12px', opacity: 0.7, marginTop: '12px' }}>Calorías: {nutricion.almuerzo?.calorias} kcal</p>
+                </div>
+                <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                  <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍎 Merienda</h3>
+                  {nutricion.merienda && nutricion.merienda.items.map((item, i) => <p key={i} style={{ marginBottom: '8px' }}>• {item}</p>)}
+                  <p style={{ fontSize: '12px', opacity: 0.7, marginTop: '12px' }}>Calorías: {nutricion.merienda?.calorias} kcal</p>
+                </div>
+                <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                  <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍽️ Cena</h3>
+                  {nutricion.cena && nutricion.cena.items.map((item, i) => <p key={i} style={{ marginBottom: '8px' }}>• {item}</p>)}
+                  <p style={{ fontSize: '12px', opacity: 0.7, marginTop: '12px' }}>Calorías: {nutricion.cena?.calorias} kcal</p>
+                </div>
               </div>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
-                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🥗 Almuerzo</h3>
-                <p style={{ marginBottom: '8px' }}>• Pechuga de pollo a la plancha</p>
-                <p style={{ marginBottom: '8px' }}>• Arroz integral + verduras</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 650 kcal</p>
-              </div>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
-                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍎 Merienda</h3>
-                <p style={{ marginBottom: '8px' }}>• Proteína en polvo con agua</p>
-                <p style={{ marginBottom: '8px' }}>• Manzana verde</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 250 kcal</p>
-              </div>
-              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
-                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍽️ Cena</h3>
-                <p style={{ marginBottom: '8px' }}>• Salmón a la parrilla</p>
-                <p style={{ marginBottom: '8px' }}>• Batata cocida + brócoli</p>
-                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 550 kcal</p>
-              </div>
-            </div>
+            )}
           </>
         )}
       </main>
