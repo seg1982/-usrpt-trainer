@@ -12,8 +12,10 @@ export default function Dashboard({ user, onLogout }) {
       </header>
 
       <nav style={{ display: 'flex', background: '#0F3D52', borderBottom: '3px solid #0F9E8F' }}>
-        {['Overview', 'Entrenamientos', 'Feedback', 'Nutrición'].map(item => (
-          <button key={item} onClick={() => setView(item.toLowerCase())} style={{ flex: 1, padding: '16px', background: view === item.toLowerCase() ? '#0F9E8F' : 'transparent', color: 'white', border: 'none', cursor: 'pointer', fontWeight: view === item.toLowerCase() ? 'bold' : 'normal', fontSize: '14px', textTransform: 'uppercase' }}>{item}</button>
+        {['overview', 'entrenamientos', 'feedback', 'nutrición'].map(item => (
+          <button key={item} onClick={() => setView(item)} style={{ flex: 1, padding: '16px', background: view === item ? '#0F9E8F' : 'transparent', color: 'white', border: 'none', cursor: 'pointer', fontWeight: view === item ? 'bold' : 'normal', fontSize: '14px', textTransform: 'uppercase' }}>
+            {item === 'overview' ? 'Dashboard' : item.charAt(0).toUpperCase() + item.slice(1)}
+          </button>
         ))}
       </nav>
 
@@ -52,11 +54,78 @@ export default function Dashboard({ user, onLogout }) {
             </div>
           </>
         )}
-        {view !== 'overview' && (
-          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
-            <h2 style={{ color: '#0F9E8F', marginBottom: '20px' }}>Sección: {view.toUpperCase()}</h2>
-            <p style={{ opacity: 0.7 }}>Próximamente...</p>
-          </div>
+
+        {view === 'entrenamientos' && (
+          <>
+            <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>🏊 Plan de Entrenamientos</h2>
+            <div style={{ display: 'grid', gap: '20px' }}>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0F9E8F' }}>
+                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>Viernes 28 Junio</h3>
+                <p style={{ marginBottom: '12px' }}>🏊 8x50m Mariposa @ 42 seg</p>
+                <p style={{ marginBottom: '12px' }}>⏱️ Descanso: 90 segundos</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>📍 Fase: BASE - Intensidad 75-80%</p>
+              </div>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #D85A30' }}>
+                <h3 style={{ color: '#D85A30', marginBottom: '12px' }}>Lunes 1 Julio</h3>
+                <p style={{ marginBottom: '12px' }}>🏊 6x100m Mariposa @ 1:25</p>
+                <p style={{ marginBottom: '12px' }}>⏱️ Descanso: 120 segundos</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>📍 Fase: BASE - Intensidad 75-80%</p>
+              </div>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px', borderLeft: '4px solid #0F9E8F', opacity: 0.6 }}>
+                <h3 style={{ color: '#AAA', marginBottom: '12px' }}>Viernes 5 Julio</h3>
+                <p style={{ marginBottom: '12px' }}>🏊 Próximamente...</p>
+              </div>
+            </div>
+          </>
+        )}
+
+        {view === 'feedback' && (
+          <>
+            <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>💬 Tu Feedback</h2>
+            <div style={{ background: '#0F3D52', padding: '32px', borderRadius: '12px', textAlign: 'center' }}>
+              <p style={{ fontSize: '48px', marginBottom: '20px' }}>📝</p>
+              <p style={{ fontSize: '18px', marginBottom: '20px' }}>¿Cómo te sentiste en tu último entrenamiento?</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px', marginTop: '30px' }}>
+                {['Excelente', 'Bien', 'Normal', 'Cansado'].map(level => (
+                  <button key={level} style={{ padding: '16px', background: '#1D5B7D', color: 'white', border: '2px solid #0F9E8F', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', transition: 'all 0.3s ease' }} onMouseOver={(e) => e.target.style.background = '#0F9E8F'} onMouseOut={(e) => e.target.style.background = '#1D5B7D'}>
+                    {level}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
+
+        {view === 'nutrición' && (
+          <>
+            <h2 style={{ color: '#0F9E8F', marginBottom: '32px', fontSize: '28px' }}>🥗 Plan de Nutrición</h2>
+            <div style={{ display: 'grid', gap: '20px' }}>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🌅 Desayuno</h3>
+                <p style={{ marginBottom: '8px' }}>• Avena con plátano y almendras</p>
+                <p style={{ marginBottom: '8px' }}>• Café con leche desnatada</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 450 kcal</p>
+              </div>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🥗 Almuerzo</h3>
+                <p style={{ marginBottom: '8px' }}>• Pechuga de pollo a la plancha</p>
+                <p style={{ marginBottom: '8px' }}>• Arroz integral + verduras</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 650 kcal</p>
+              </div>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍎 Merienda</h3>
+                <p style={{ marginBottom: '8px' }}>• Proteína en polvo con agua</p>
+                <p style={{ marginBottom: '8px' }}>• Manzana verde</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 250 kcal</p>
+              </div>
+              <div style={{ background: '#0F3D52', padding: '24px', borderRadius: '12px' }}>
+                <h3 style={{ color: '#0F9E8F', marginBottom: '12px' }}>🍽️ Cena</h3>
+                <p style={{ marginBottom: '8px' }}>• Salmón a la parrilla</p>
+                <p style={{ marginBottom: '8px' }}>• Batata cocida + brócoli</p>
+                <p style={{ fontSize: '12px', opacity: 0.7 }}>Calorías: 550 kcal</p>
+              </div>
+            </div>
+          </>
         )}
       </main>
     </div>
